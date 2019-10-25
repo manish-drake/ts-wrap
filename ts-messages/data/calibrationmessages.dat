@@ -1,0 +1,95 @@
+Version 2
+Destination 0xe
+
+
+Message InitiateCalibration 0x0001     #No arguments
+end
+
+
+Message RFVoltageRegulatorTest 0x0002 ReplyRFVoltageRegulatorTestBuffer    
+    TestType UInt                         #Type 0=Tx, 1=Rx
+end
+
+Message SetLimits 0x0003     #Limits file name (lim.txt, mfglim.txt, tmplim.txt)
+    LimitsFilename String
+end
+
+Message SetPresets 0x0004     #Presets file name (presets.txt)
+    PresetsFilename String
+end
+
+Message SetMfgCal 0x0005     #Presets file name (presets.txt)
+    MfgCalFilename String
+end
+
+Message SetFreq 0x0006      #Frequency file name (freq.txt, mfgfreq.txt, tmpfreq.txt)
+    FreqFilename String
+end
+
+Message RFSynthesizerTest 0x0007 ReplyRFSynthesizerTestBuffer     #Type 0=Tx, 1=Rx
+    TestType UInt                    #
+end
+
+Message RXIQDemOffsetTest 0x0008 ReplyRXIQDemOffsetTest     
+    Freq     Double                    
+end
+
+Message TXRefTuningTest 0x0009 ReplyTXRefTuningTest           
+    Freq     Double                           
+end
+
+Message TempSensorTest 0x000a ReplyTempSensorTest        
+end
+
+Message AssemblyRevTest 0x000b       
+end
+
+Message CalDetTest 0x000c ReplyCalDetTest           
+end
+
+Message VSWRDetTest 0x000d ReplyVSWRDetTest           
+end
+
+Message DirDetTest 0x000e ReplyDirDetTest         
+end
+
+Message ThldDetTest 0x000f ReplyThldDetTest           
+end
+
+Message TXIQModOffsetTest 0x0010 ReplyTXIQModOffsetTest
+    Freq     Double                    
+end
+
+Message TXIQGainBalTest 0x0011 ReplyTXIQGainBalTest
+    Freq     Double                            
+end
+
+Message TXStepAttenTest 0x0012 ReplyTXStepAttenTest
+    Freq     Double
+end
+
+Message TXCoarseAttenTest 0x0013 ReplyTXCoarseAttenTest
+    Freq     Double
+end
+
+Message RXAttenuatorTest 0x0014 ReplyRXAttenTest
+    Freq     Double
+end
+
+Message RXBWTest 0x0015 ReplyRXBWTest
+    TestType UInt
+    Freq     Double
+end
+
+Message RunBITTest 0x0016 ReplyRunBITTest
+    RunAlignment Bool
+    Freq         Double
+end
+
+Message TXBWTest 0x0017 ReplyTXBWTest
+    Freq     Double
+end
+
+Message RXIQGainTest 0x0018 ReplyRXIQGainTest
+    Freq     Double
+end

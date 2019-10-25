@@ -1,0 +1,937 @@
+Message BDSCode05   0x0001
+    #Extended squitter airborne position
+    FormatTypeCode        UInt     
+    SureveillanceStatus   UInt      #ENUM
+    singleAntennaFlag     Bool
+    Altitude              UInt
+    UTCTimeSync           Bool
+    CPRFormat             UInt
+    EncodedLatitude       Float
+    EncodedLongitude      Float
+    radContainment	  UInt
+    positionOK		  Bool
+    altSource 	          UInt
+    NICb	          UInt
+end
+
+Message BDSCode06   0x0002
+    #Extended squitter surface position
+    FormatTypeCode       UInt
+    Movement             UInt  
+    MovementKnts         Float      
+    GroundTrackStatus    UInt
+    GroundTrack          UInt
+    UTCTimeSync          UInt    
+    CPRFormat            Bool
+    EncodedLatitude      Float
+    EncodedLongitude     Float
+    radContainment       UInt
+end
+
+Message BDSCode07   0x0003
+    #Extended squitter status
+    TransmissionRateSubfield    UInt           #ENUM
+    AltitudeTypeSubfield        UInt           #ENUM
+end
+
+Message BDSCode08   0x0004
+    #Extended squitter aircraft identification and category
+    CategoryGroup      UInt           
+    AircraftCategory    UInt           #ENUM
+    AircraftID          String
+end
+
+Message BDSCode09Subtypes1n2   0x0005
+    #Extended squitter airborne velocity(Subtypes 1 and 2: Velocity over ground)
+    FormatTypeCode                           UInt
+    Subtype                                  UInt            
+    intentChangeFlag                         UInt
+    iFRCapabilityFlag                        UInt
+    NavigationUncertaintyCategoryForVelocity UInt
+    EastWestVelocityDirection                UInt
+    EastWestVelocity                         UInt
+    NorthSouthVelocityDirection              UInt
+    NorthSouthVelocity                       UInt
+    VerticalRateSource                       UInt
+    VerticalRateSign                         UInt
+    VerticalRate                             UInt
+    GNSSAltSign                              UInt
+    GNSSAltDifferenceFromBaroAlt             UInt
+end
+
+
+Message BDSCode0B   0x0007
+    #Air/air state information 1 (aircraft state)
+    TrueAirspeedStatus      Bool
+    TrueAirspeed            UInt
+    HeadingSwitch           UInt
+    HeadingStatus           Bool
+    HeadingSign             Bool
+    Heading                 Float
+    TrueTrackAngleStatus    UInt
+    TrueTrackAngleSign      Bool
+    TrueTrackAngle          Float
+    GroundSpeedStatus       UInt
+    GroundSpeed             Float
+end
+
+Message BDSCode0C   0x0008
+    #Air/air state information 2 (aircraft intent)
+    AltitudeLevelStatus     Bool
+    AltitudeLevel           UInt
+    NextCourseStatus        UInt  
+    NextCourseSign          Bool
+    NextCourse              Float
+    WaypointStatus          Bool
+    NextWaypointTime        UInt
+    VerticalVelocityStatus  Bool
+    VerticalVelocitySign    Bool
+    VerticalVelocity        Int
+    RollAngleStatus         Bool
+    RollAngleSign           Bool
+    RollAngle               Float
+end
+
+Message BDSCode10   0x0009
+    #Data link capability report
+    BDSCode                                        String
+    continuationFlag                               Bool
+    OverlayCommandCapability                       UInt
+    ACASStatus                                     Bool
+    ModeSSubnetworkVersion                         UInt    #ENUM
+    TransponderEnhancedProtocolIndicator           UInt
+    ModeSSpecificServicesCapability                UInt
+    UplinkELM                                      UInt    #ENUM
+    DownlinkELM                                    UInt    #ENUM
+    AircraftIDCapability                           Bool
+    SquitterCapabilitySubfield                     Bool
+    SurveillanceIdentifierCode                     Bool
+    CommonUsageGICBCapabilityReport                Bool
+    HybridSurveillanceCapability                   Bool
+    ACASTAsRAsGeneration                           Bool
+    MOPSDocument                                   UInt    #ENUM
+    DTESubAddrStatus0                              Bool
+    DTESubAddrStatus1                              Bool
+    DTESubAddrStatus2                              Bool
+    DTESubAddrStatus3                              Bool
+    DTESubAddrStatus4                              Bool
+    DTESubAddrStatus5                              Bool
+    DTESubAddrStatus6                              Bool
+    DTESubAddrStatus7                              Bool
+    DTESubAddrStatus8                              Bool
+    DTESubAddrStatus9                              Bool
+    DTESubAddrStatus10                             Bool
+    DTESubAddrStatus11                             Bool
+    DTESubAddrStatus12                             Bool
+    DTESubAddrStatus13                             Bool
+    DTESubAddrStatus14                             Bool
+    DTESubAddrStatus15                             Bool
+end
+
+Message BDSCode17   0x000a
+    #Common usage GICB capability report
+    05_ExtendedSquitterAirbornePosition             Bool
+    06_ExtendedSquitterSurfacePosition              Bool
+    07_ExtendedSquitterStatus                       Bool
+    08_ExtendedSquitterIDnAndCategory               Bool
+    09_ExtendedSquitterAirborneVelocityInfo         Bool
+    0A_ExtendedSquitterEventDrivenInfo              Bool
+    20_AircraftID                                   Bool
+    2l_AircraftRegistrationNumber                   Bool
+    40_SelectedVerticalIntention                    Bool
+    4l_NextWaypointIdentifier                       Bool
+    42_NextWaypointPosition                         Bool
+    43_NextWaypointInfo                             Bool
+    44_MeteorologicalRoutineReport                  Bool
+    45_MeteorologicalHazardReport                   Bool
+    48_VHFChannelReport                             Bool
+    50_TrackAndTurnReport                           Bool
+    51_PositionCoarse                               Bool
+    52_PositionFine                                 Bool
+    53_AirReferencedStateVector                     Bool
+    54_Waypoint1                                    Bool
+    55_Waypoint2                                    Bool
+    56_Waypoint3                                    Bool
+    5F_QuasiStaticParameterMonitoring               Bool 
+    60_HeadingAndSpeedReport                        Bool
+end
+
+Message BDSCode18   0x000b
+    #Mode S specific services GICB capability report (1 of 5)
+    BDS_38          Bool
+    BDS_37          Bool
+    BDS_36          Bool
+    BDS_35          Bool
+    BDS_34          Bool
+    BDS_33          Bool
+    BDS_32          Bool
+    BDS_31          Bool
+    BDS_30          Bool
+    BDS_2F          Bool
+    BDS_2E          Bool
+    BDS_2D          Bool
+    BDS_2C          Bool
+    BDS_2B          Bool
+    BDS_2A          Bool
+    BDS_29          Bool
+    BDS_28          Bool
+    BDS_27          Bool
+    BDS_26          Bool
+    BDS_25          Bool
+    BDS_24          Bool
+    BDS_23          Bool
+    BDS_22          Bool
+    BDS_21          Bool
+    BDS_20          Bool
+    BDS_1F          Bool
+    BDS_1E          Bool
+    BDS_1D          Bool
+    BDS_1C          Bool
+    BDS_1B          Bool
+    BDS_1A          Bool
+    BDS_19          Bool
+    BDS_18          Bool
+    BDS_17          Bool
+    BDS_16          Bool
+    BDS_15          Bool
+    BDS_14          Bool
+    BDS_13          Bool
+    BDS_12          Bool
+    BDS_11          Bool
+    BDS_10          Bool
+    BDS_0F          Bool
+    BDS_0E          Bool
+    BDS_0D          Bool
+    BDS_0C          Bool
+    BDS_0B          Bool
+    BDS_0A          Bool
+    BDS_09          Bool
+    BDS_08          Bool
+    BDS_07          Bool
+    BDS_06          Bool
+    BDS_05          Bool
+    BDS_04          Bool
+    BDS_03          Bool
+    BDS_02          Bool
+    BDS_01          Bool
+end
+
+Message BDSCode19   0x000c
+    #Mode S specific services GICB capability report (2 of 5)
+    BDS_70          Bool
+    BDS_6F          Bool
+    BDS_6E          Bool
+    BDS_6D          Bool
+    BDS_6C          Bool
+    BDS_6B          Bool
+    BDS_6A          Bool
+    BDS_69          Bool
+    BDS_68          Bool
+    BDS_67          Bool
+    BDS_66          Bool
+    BDS_65          Bool
+    BDS_64          Bool
+    BDS_63          Bool
+    BDS_62          Bool
+    BDS_61          Bool
+    BDS_60          Bool
+    BDS_5F          Bool
+    BDS_5E          Bool
+    BDS_5D          Bool
+    BDS_5C          Bool
+    BDS_5B          Bool
+    BDS_5A          Bool
+    BDS_59          Bool
+    BDS_58          Bool
+    BDS_57          Bool
+    BDS_56          Bool
+    BDS_55          Bool
+    BDS_54          Bool
+    BDS_53          Bool
+    BDS_52          Bool
+    BDS_51          Bool
+    BDS_50          Bool
+    BDS_4F          Bool
+    BDS_4E          Bool
+    BDS_4D          Bool
+    BDS_4C          Bool
+    BDS_4B          Bool
+    BDS_4A          Bool
+    BDS_49          Bool
+    BDS_48          Bool
+    BDS_47          Bool
+    BDS_46          Bool
+    BDS_45          Bool
+    BDS_44          Bool
+    BDS_43          Bool
+    BDS_42          Bool
+    BDS_41          Bool
+    BDS_40          Bool
+    BDS_3F          Bool
+    BDS_3E          Bool
+    BDS_3D          Bool
+    BDS_3C          Bool
+    BDS_3B          Bool
+    BDS_3A          Bool
+    BDS_39          Bool
+end
+
+Message BDSCode1A   0x000d
+    #Mode S specific services GICB capability report (3 of 5)
+    BDS_A8          Bool
+    BDS_A7          Bool
+    BDS_A6          Bool
+    BDS_A5          Bool
+    BDS_A4          Bool
+    BDS_A3          Bool
+    BDS_A2          Bool
+    BDS_A1          Bool
+    BDS_A0          Bool
+    BDS_9F          Bool
+    BDS_9E          Bool
+    BDS_9D          Bool
+    BDS_9C          Bool
+    BDS_9B          Bool
+    BDS_9A          Bool
+    BDS_99          Bool
+    BDS_98          Bool
+    BDS_97          Bool
+    BDS_96          Bool
+    BDS_95          Bool
+    BDS_94          Bool
+    BDS_93          Bool
+    BDS_92          Bool
+    BDS_91          Bool
+    BDS_90          Bool
+    BDS_8F          Bool
+    BDS_8E          Bool
+    BDS_8D          Bool
+    BDS_8C          Bool
+    BDS_8B          Bool
+    BDS_8A          Bool
+    BDS_89          Bool
+    BDS_88          Bool
+    BDS_87          Bool
+    BDS_86          Bool
+    BDS_85          Bool
+    BDS_84          Bool
+    BDS_83          Bool
+    BDS_82          Bool
+    BDS_81          Bool
+    BDS_80          Bool
+    BDS_7F          Bool
+    BDS_7E          Bool
+    BDS_7D          Bool
+    BDS_7C          Bool
+    BDS_7B          Bool
+    BDS_7A          Bool
+    BDS_79          Bool
+    BDS_78          Bool
+    BDS_77          Bool
+    BDS_76          Bool
+    BDS_75          Bool
+    BDS_74          Bool
+    BDS_73          Bool
+    BDS_72          Bool
+    BDS_71          Bool
+end
+
+Message BDSCode1B   0x000e
+    #Mode S specific services GICB capability report (4 of 5)
+    BDS_E0         Bool
+    BDS_DF         Bool
+    BDS_DE         Bool
+    BDS_DD         Bool
+    BDS_DC         Bool
+    BDS_DB         Bool
+    BDS_DA         Bool
+    BDS_D9         Bool
+    BDS_D8         Bool
+    BDS_D7         Bool
+    BDS_D6         Bool
+    BDS_D5         Bool
+    BDS_D4         Bool
+    BDS_D3         Bool
+    BDS_D2         Bool
+    BDS_D1         Bool
+    BDS_D0         Bool
+    BDS_CF         Bool
+    BDS_CE         Bool
+    BDS_CD         Bool
+    BDS_CC         Bool
+    BDS_CB         Bool
+    BDS_CA         Bool
+    BDS_C9         Bool
+    BDS_C8         Bool
+    BDS_C7         Bool
+    BDS_C6         Bool
+    BDS_C5         Bool
+    BDS_C4         Bool
+    BDS_C3         Bool
+    BDS_C2         Bool
+    BDS_C1         Bool
+    BDS_C0         Bool
+    BDS_BF         Bool
+    BDS_BE         Bool
+    BDS_BD         Bool
+    BDS_BC         Bool
+    BDS_BB         Bool
+    BDS_BA         Bool
+    BDS_B9         Bool
+    BDS_B8         Bool
+    BDS_B7         Bool
+    BDS_B6         Bool
+    BDS_B5         Bool
+    BDS_B4         Bool
+    BDS_B3         Bool
+    BDS_B2         Bool
+    BDS_B1         Bool
+    BDS_B0         Bool
+    BDS_AF         Bool
+    BDS_AE         Bool
+    BDS_AD         Bool
+    BDS_AC         Bool
+    BDS_AB         Bool
+    BDS_AA         Bool
+    BDS_A9         Bool
+end
+Message BDSCode1C   0x000f
+    #Mode S specific services GICB capability report (5 of 5)
+    BDS_FF         Bool
+    BDS_FE         Bool
+    BDS_FD         Bool
+    BDS_FC         Bool
+    BDS_FB         Bool
+    BDS_FA         Bool
+    BDS_F9         Bool
+    BDS_F8         Bool
+    BDS_F7         Bool
+    BDS_F6         Bool
+    BDS_F5         Bool
+    BDS_F4         Bool
+    BDS_F3         Bool
+    BDS_F2         Bool
+    BDS_F1         Bool
+    BDS_F0         Bool
+    BDS_EF         Bool
+    BDS_EE         Bool
+    BDS_ED         Bool
+    BDS_EC         Bool
+    BDS_EB         Bool
+    BDS_EA         Bool
+    BDS_E9         Bool
+    BDS_E8         Bool
+    BDS_E7         Bool
+    BDS_E6         Bool
+    BDS_E5         Bool
+    BDS_E4         Bool
+    BDS_E3         Bool
+    BDS_E2         Bool
+    BDS_E1         Bool
+end
+
+Message BDSCode1D   0x0010
+    #Mode S specific services MSP capability report (1 of 3)
+    UplinkMSPChannel1       Bool
+    UplinkMSPChannel2       Bool
+    UplinkMSPChannel3       Bool
+    UplinkMSPChannel4       Bool
+    UplinkMSPChannel5       Bool
+    UplinkMSPChannel6       Bool
+    UplinkMSPChannel7       Bool
+    UplinkMSPChannel8       Bool
+    UplinkMSPChannel9       Bool
+    UplinkMSPChannel10      Bool
+    UplinkMSPChannel11      Bool
+    UplinkMSPChannel12      Bool
+    UplinkMSPChannel13      Bool
+    UplinkMSPChannel14      Bool
+    UplinkMSPChannel15      Bool
+    UplinkMSPChannel16      Bool
+    UplinkMSPChannel17      Bool
+    UplinkMSPChannel18      Bool
+    UplinkMSPChannel19      Bool
+    UplinkMSPChannel20      Bool
+    UplinkMSPChannel21      Bool
+    UplinkMSPChannel22      Bool
+    UplinkMSPChannel23      Bool
+    UplinkMSPChannel24      Bool
+    UplinkMSPChannel25      Bool
+    UplinkMSPChannel26      Bool
+    UplinkMSPChannel27      Bool
+    UplinkMSPChannel28      Bool
+    DownlinkMSPChannel1     Bool
+    DownlinkMSPChannel2     Bool
+    DownlinkMSPChannel3     Bool
+    DownlinkMSPChannel4     Bool
+    DownlinkMSPChannel5     Bool
+    DownlinkMSPChannel6     Bool
+    DownlinkMSPChannel7     Bool
+    DownlinkMSPChannel8     Bool
+    DownlinkMSPChannel9     Bool
+    DownlinkMSPChannel10    Bool
+    DownlinkMSPChannel11    Bool
+    DownlinkMSPChannel12    Bool
+    DownlinkMSPChannel13    Bool
+    DownlinkMSPChannel14    Bool
+    DownlinkMSPChannel15    Bool
+    DownlinkMSPChannel16    Bool
+    DownlinkMSPChannel17    Bool
+    DownlinkMSPChannel18    Bool
+    DownlinkMSPChannel19    Bool
+    DownlinkMSPChannel20    Bool
+    DownlinkMSPChannel21    Bool
+    DownlinkMSPChannel22    Bool
+    DownlinkMSPChannel23    Bool
+    DownlinkMSPChannel24    Bool
+    DownlinkMSPChannel25    Bool
+    DownlinkMSPChannel26    Bool
+    DownlinkMSPChannel27    Bool
+    DownlinkMSPChannel28    Bool
+end
+
+Message BDSCode1E   0x0011
+    #Mode S specific services MSP capability report (2 of 3)
+    UplinkMSPChannel29      Bool
+    UplinkMSPChannel30      Bool
+    UplinkMSPChannel31      Bool
+    UplinkMSPChannel32      Bool
+    UplinkMSPChannel33      Bool
+    UplinkMSPChannel34      Bool
+    UplinkMSPChannel35      Bool
+    UplinkMSPChannel36      Bool
+    UplinkMSPChannel37      Bool
+    UplinkMSPChannel38      Bool
+    UplinkMSPChannel39      Bool
+    UplinkMSPChannel40      Bool
+    UplinkMSPChannel41      Bool
+    UplinkMSPChannel42      Bool
+    UplinkMSPChannel43      Bool
+    UplinkMSPChannel44      Bool
+    UplinkMSPChannel45      Bool
+    UplinkMSPChannel46      Bool
+    UplinkMSPChannel47      Bool
+    UplinkMSPChannel48      Bool
+    UplinkMSPChannel49      Bool
+    UplinkMSPChannel50      Bool
+    UplinkMSPChannel51      Bool
+    UplinkMSPChannel52      Bool
+    UplinkMSPChannel53      Bool
+    UplinkMSPChannel54      Bool
+    UplinkMSPChannel55      Bool
+    UplinkMSPChannel56      Bool
+    DownlinkMSPChannel29    Bool
+    DownlinkMSPChannel30    Bool
+    DownlinkMSPChannel31    Bool
+    DownlinkMSPChannel32    Bool
+    DownlinkMSPChannel33    Bool
+    DownlinkMSPChannel34    Bool
+    DownlinkMSPChannel35    Bool
+    DownlinkMSPChannel36    Bool
+    DownlinkMSPChannel37    Bool
+    DownlinkMSPChannel38    Bool
+    DownlinkMSPChannel39    Bool
+    DownlinkMSPChannel40    Bool
+    DownlinkMSPChannel41    Bool
+    DownlinkMSPChannel42    Bool
+    DownlinkMSPChannel43    Bool
+    DownlinkMSPChannel44    Bool
+    DownlinkMSPChannel45    Bool
+    DownlinkMSPChannel46    Bool
+    DownlinkMSPChannel47    Bool
+    DownlinkMSPChannel48    Bool
+    DownlinkMSPChannel49    Bool
+    DownlinkMSPChannel50    Bool
+    DownlinkMSPChannel51    Bool
+    DownlinkMSPChannel52    Bool
+    DownlinkMSPChannel53    Bool
+    DownlinkMSPChannel54    Bool
+    DownlinkMSPChannel55    Bool
+    DownlinkMSPChannel56    Bool
+end
+
+Message BDSCode1F   0x0012
+    #Mode S specific services MSP capability report (3 of 3)
+    UplinkMSPChannel57      Bool
+    UplinkMSPChannel58      Bool
+    UplinkMSPChannel59      Bool
+    UplinkMSPChannel60      Bool
+    UplinkMSPChannel61      Bool
+    UplinkMSPChannel62      Bool
+    UplinkMSPChannel63      Bool
+    DownlinkMSPChannel57    Bool
+    DownlinkMSPChannel58    Bool
+    DownlinkMSPChannel59    Bool
+    DownlinkMSPChannel60    Bool
+    DownlinkMSPChannel61    Bool
+    DownlinkMSPChannel62    Bool
+    DownlinkMSPChannel63    Bool
+end
+
+Message BDSCode20   0x0013
+    #Aircraft identification
+    BDSCode         String
+    AircraftID      String
+end
+
+Message BDSCode21   0x0014
+    #Aircraft and airline registration markings
+    AircraftRegistrationStatus          Bool
+    AircraftRegistrationNumber          String
+    ICAOAirlineRegistrationStatus       Bool
+    ICAOAirlineRegistrationMarking      String
+end
+
+Message BDSCode22   0x0015
+    #Antenna positions
+    Antenna1AntennaType    UInt    #ENUM
+    Antenna1XPostion       UInt
+    Antenna1ZPostion       UInt
+    Antenna2AntennaType    UInt
+    Antenna2XPostion       UInt
+    Antenna2ZPostion       UInt
+    Antenna3AntennaType    UInt
+    Antenna3XPostion       UInt
+    Antenna3ZPostion       UInt
+    Antenna4AntennaType    UInt
+    Antenna4XPostion       UInt
+    Antenna4ZPostion       UInt
+end
+
+Message BDSCode25   0x0016
+    #Aircraft type
+    AircraftType            String
+    Engines                 UInt
+    EngineType              String
+    ModelDesignation        UInt
+    WakeTurbulenceCategory  String
+end
+
+Message BDSCode30   0x0017
+    #ACAS active resolution advisory
+    BDSCode                     String
+    ARABit41                    Bool
+    ARABit42                    Bool
+    ARABit43                    Bool
+    ARABit44                    Bool
+    ARABit45                    Bool
+    ARABit46                    Bool
+    ARABit47                    Bool
+    RACBit55                    Bool
+    RACBit56                    Bool
+    RACBit57                    Bool
+    RACBit58                    Bool
+    RATerminated                Bool
+    MultipleThreatEncouter      Bool
+    ThreatTypeIndicator         UInt       #ENUM
+    TID                         String
+    TIDA                        String
+    TIDR                        UInt       #ENUM
+    TIDB                        UInt       #ENUM
+
+end 
+
+Message BDSCode40   0x0018
+    #Selected vertical intention
+    MCPnFCUSelectedAltitudeStatus       Bool
+    MCPnFCUSelectedAltitude             Int
+    FMSSelectedAltitudeStatus           Bool
+    FMSSelectedAltitude                 Int
+    BarometricPressureStatus            Bool
+    BarometricPressureMinus800mb        Float
+    MCPnFCUModeStatus                   Bool
+    VNAVMode                            Bool
+    AltHoldMode                         Bool
+    ApproachMode                        Bool
+    TargetAltSourceStatus               Bool
+    TargetAltSource                     UInt        #ENUM 
+end
+
+Message BDSCode41   0x0019
+    #Next waypoint details
+    WaypointNameStatus      Bool
+    WaypointName            String    
+end
+
+Message BDSCode42   0x001a
+    #Next waypoint details          
+    WaypointLatitudeStatus          Bool
+    WaypointLatitudeSign            Bool
+    WaypointLatitude                Double
+    WaypointLongitudeStatus         Bool
+    WaypointLongitudeSign           Bool
+    WaypointLongitude               Double
+    WaypointCrossingAltitudeStatus  Bool
+    WaypointCrossingAltitudeSign    Bool
+    WaypointCrossingAltitude        Int
+end
+
+Message BDSCode43   0x001b	
+    #Next waypoint details
+    BearingToWaypointStatus    Bool
+    BearingToWaypointSign      Bool
+    BearingToWaypoint          Float
+    TimeToGoStatus             Bool
+    TimeToGo                   Float
+    DistanceToGoStatus         Bool
+    DistanceToGo               Float
+end
+
+Message BDSCode44   0x001c		
+    #Meteorological routine air report
+    FOMSource                     UInt        #ENUM
+    WindSpeednDirectionStatus     Bool
+    WindSpeed                     UInt
+    WindDirection                 Float
+    StaticAirTemperatureSign      Bool
+    StaticAirTemperature          Float
+    AverageStaticPressureStatus   Bool
+    AverageStaticPressure         UInt
+    TurbulenceStatus              Bool
+    Turbulence                    UInt        #ENUM
+    HumidityStatus                Bool
+    Humidity                      Float
+end
+
+Message BDSCode45   0x001d
+    #Meteorological hazard report
+    TurbulenceStatus              Bool
+    Turbulence                    UInt      #ENUM
+    WindShearStatus               Bool
+    WindShear                     UInt      #ENUM
+    MicroburstStatus              Bool      
+    Microburst                    UInt      #ENUM
+    IcingStatus                   Bool
+    Icing                         UInt      #ENUM
+    WakeVortexStatus              Bool
+    WakeVortex                    UInt      #ENUM
+    StaticAirTemperatureStatus    Bool
+    StaticAirTemperatureSign      Bool
+    StaticAirTemperature          Float
+    AverageStaticPressureStatus   Bool
+    AverageStaticPressure         UInt
+    RadioHeightStatus             Bool
+    RadioHeight                   Int
+end
+
+Message BDSCode48   0x001e
+    #VHF channel report
+    VHF1                   Float
+    VHF1Status             Bool
+    VHF1AudioStatus        UInt
+    VHF2                   Float
+    VHF2Status             Bool
+    VHF2AudioStatus        UInt
+    VHF3                   Float
+    VHF3Status             Bool
+    VHF3AudioStatus        UInt
+    121_5MHzAudioStatus    UInt
+end
+
+Message BDSCode50   0x001f
+    #Track and turn report
+    RollAngleStatus         Bool
+    RollAngleSign           Bool 
+    RollAngle               Float
+    TrueTrackAngleStatus    Bool
+    TrueTrackAngleSign      Bool
+    TrueTrackAngle          Float 
+    GroundSpeedStatus       Bool
+    GroundSpeed             Float 
+    TrackAngleRateStatus    Bool
+    TrackAngleRateSign      Bool 
+    TrackAngleRate          Float 
+    TrueAirspeedStatus      Bool
+    TrueAirspeed            Float
+end
+
+Message BDSCode51   0x0020
+    #Position report coarse
+    Status                  Bool
+    LatitudeSign            Bool
+    Latitude                Double
+    LongitudeSign           Bool
+    Longitude               Double
+    PressureAltitudeSign    Bool
+    PressureAltitude        Int
+end
+
+Message BDSCode52   0x0021	
+    #Position report fine
+    Status                  Bool
+    FOMSource               UInt        #ENUM
+    LatitudeFine            Double
+    LongitudeFine           Double
+    PressureAltitudeSign    Bool
+    PressureAltitude        Int
+end
+
+Message BDSCode53   0x0022
+    #Air-referenced state vector
+    MagneticHeadingStatus     Bool
+    MagneticHeadingSign       Bool
+    MagneticHeading           Float
+    IndicatedAirspeedStatus   Bool
+    IndicatedAirspeed         UInt
+    MachNumberStatus          Bool
+    MachNumber                Float
+    TrueAirspeedStatus        Bool
+    TrueAirspeed              Float
+    AltitudeRateStatus        Bool
+    AltitudeRateSign          Bool
+    AltitudeRate              Int
+end
+
+Message BDSCode54   0x0023	
+    # Waypoints 1
+    WaypointNameStatus      Bool
+    WaypointName            String
+    EstimatedArrivalTime    UInt
+    EstimatedFlightLevel    UInt 
+    TimeToGo                Double
+end
+
+Message BDSCode55   0x0024		
+    #Waypoints 2
+    WaypointNameStatus      Bool
+    WaypointName            String
+    EstimatedArrivalTime    UInt
+    EstimatedFlightLevel    UInt 
+    TimeToGo                Double
+end
+
+Message BDSCode56   0x0025
+    #Waypoints 3
+    WaypointNameStatus      Bool
+    WaypointName            String
+    EstimatedArrivalTime    UInt
+    EstimatedFlightLevel    UInt 
+    TimeToGo                Double
+end
+
+Message BDSCode5F   0x0026	
+    #Quasi-static parameter monitoring
+    MCPnFCUSeletedAltitude            Bool
+    NextWaypoint                      Bool 
+    FMSVerticalMode                   Bool 
+    VHFChannelReport                  Bool 
+    MeteorologicalHazards             Bool 
+    FMSSelectedAltitude               Bool 
+    BarometricPressureMinus800mb      Bool 
+end
+
+Message BDSCode60   0x0027
+    #Heading and speed report
+    MagneticHeadingStatus             Bool   
+    MagneticHeadingSign               Bool
+    MagneticHeading                   Float
+    IndicatedAirspeedStatus           Bool
+    IndicatedAirspeed                 UInt
+    MachStatus                        Bool
+    Mach                              Float
+    BarometricAltitudeRateStatus      Bool
+    BarometricAltitudeRateSign        Bool
+    BarometricAltitudeRate            Int
+    InertialVerticalVelocityStatus    Bool
+    InertialVerticalVelocitySign      Bool
+    InertialVerticalVelocity          Int
+end
+
+Message BDSCode61   0x0028
+    #Extended squitter emergency/priority status
+    FormatTypeCode      UInt   
+    SubtypeCode         UInt
+    EmergencyState      UInt        #ENUM
+end
+
+Message BDSCode65   0x0029
+    #Extended squitter aircraft operational status
+    FormatTypeCode                              UInt
+    SubtypeCode                                 UInt
+    EnRouteOperationalCapabilities              UInt
+    TerminalAreaOpertionalCapabilities          UInt
+    ApproachLandingOperationalCapabilities      UInt
+    SurfaceOperationalCapabilities              UInt
+    EnRouteOperationalCapabilityStatus          UInt
+    TerminalAreaOpertionalCapabilityStatus      UInt
+    ApproachLandingOperationalCapabilityStatus  UInt
+    SurfaceOperationalCapabilityStatus          UInt
+end
+
+Message BDSCodeE3   0x002a
+    #Transponder type / part number
+    Status       Bool
+    FormatType   UInt
+    PartNumber   String
+end
+
+Message BDSCodeE4   0x002b
+    #Transponder software revision number
+    Status       Bool
+    FormatType   UInt
+    PartNumber   String
+end
+
+Message BDSCodeE5   0x002c
+    #ACAS unit part number
+    Status       Bool
+    FormatType   UInt
+    PartNumber   String
+end
+
+Message BDSCodeE6   0x0030
+    #ACAS unit software revision
+    Status       Bool
+    FormatType   UInt
+    PartNumber   String
+end
+
+Message BDSCodeE7   0x0032
+    #Transponder status and diagnostics
+    BDSRegisteNumber                                String
+    SDICode                                         UInt        #ENUM
+    NonDiversityTransponder                         Bool
+    DiversityFailure                                Bool
+    UpperReceiverFailure                            Bool
+    LowerReceiverFailure                            Bool
+    UpperSquitterFailure                            Bool
+    LowerSquitterFailure                            Bool
+    AirGround1InputStatus                          Bool
+    AirGround2InputStatus                          Bool
+    GPSTimeMark1Status                             Bool
+    GPSTimeMark2Status                             Bool
+    ModeSLimitingDuringPowerOnCycle                 Bool
+    ModeSLimiting                                   Bool
+    ExtendedSquitterDisableStatus                   Bool
+    ACASInputInactive                               Bool
+    ADSBOutStatus                                   Bool
+    SelectedControlInactiveStatus                   UInt        #ENUM
+    ControlInputSelection                           UInt        #ENUM
+    MultipleAirDataSourceReportingSelection         UInt        #ENUM
+    AltitudeAlternatePortSelection                  Bool
+    AltitudePortAStatus                             UInt        #ENUM
+    AltitudePortBStatus                             UInt        #ENUM
+    FMCnGNSSSourceSelect                            Bool
+    FMCnGNSS1BusStatus                             UInt        #ENUM
+    FMCnGNSS2BusStatus                             UInt        #ENUM
+    MultipleIRSnAHRSDataSourceReportingSelection    UInt        #ENUM                          
+    IRSnFMSSourceSelect                             Bool
+    IRSnFMSnDataConcentratorIn1                    UInt        #ENUM
+    IRSnFMSnDataConcentratorIn2                    UInt        #ENUM
+    FMCSelect                                       Bool
+    FMC1nGenInBusStatus                            UInt        #ENUM
+    FMC2nGenInBusStatus                            UInt        #ENUM
+    MSPnATSUnCMUIn1Status                          UInt        #ENUM
+    MSPnATSUnCMUIn2Status                          UInt        #ENUM
+end
+
+Message BDSCodeEA   0x0033
+    #Vendor specific status and diagnostics
+    BDSRegisterNumber                             String
+    ManufacturerDefinedDiagnosticField9_16        String
+    ManufacturerDefinedDiagnosticField17_24       String
+    ManufacturerDefinedDiagnosticField25_32       String
+    ManufacturerDefinedDiagnosticField33_40       String
+    ManufacturerDefinedDiagnosticField41_48       String
+    ManufacturerDefinedDiagnosticField49_56       String
+end

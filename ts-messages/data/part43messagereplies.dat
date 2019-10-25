@@ -1,0 +1,291 @@
+
+Message Part43CoarseMTLReply 0x0001
+    MTL             Float
+end
+
+Message Part43Results   0x0002
+    MTL_ModeA           Float
+    MTL_ModeC           Float
+    MustReply_ModeA     Bool
+    MustReply_ModeA_Pct UInt
+    MustReply_ModeC     Bool
+
+    MustReply_ModeA     Bool
+    MustReply_ModeA_Pct UInt
+    MustReply_ModeC     Bool
+    
+    MTL_DifferencePass  Bool
+    MTL_Difference      Float
+end
+
+Message Part43TransponderInfo 0x0003
+    XpndrType           UINT    #0=SIF, 1=Mode-S
+    Level               UINT    #0=Unknown, 1-5 = Level 1-5
+    ModeS 
+    ModeSAddress        UINT    #ICAO address, valid if XpndrType=1 (ModeS)
+    VerticalState       UINT    #??? 1=Airborne, 0=ground
+end
+
+
+
+Message Part43SummaryResults 0x0014
+#Summary
+    UutType			String 				
+    ReplyFrequency		Float   #Freq(MHz)
+    RfPeakOutputPower		Float   #dBm		
+    ReceiverSensitivity		Float   #dBm		
+    Suppression			Bool
+    DiversityIsolation		Bool		
+    PulseMeasurements		Bool		
+    ModeACode			UInt				
+    ModeCAltitude		UInt
+    ModeSAddress		UInt
+    CommCapability		String	
+    ModeSOnlyAllCall		Bool
+    AtcrbsMsAllCall		Bool	
+    AtcrbsOnlyAllCall		Bool
+    ModeSSquitter		Bool	
+    ModeSFormats		Bool	
+    IdAndAltitudeMatch		Bool
+    FlightId			String	
+    Icao24BitAddress		String
+    VerticalStatus		UInt
+    FlightStatus		UInt
+end
+
+Message RadioReplyFrequency 0x0015
+#RadioReplyFrequency
+    Result			UInt
+    ModeAReply			Float   #Freq(MHz)	
+    ModeCReply			Float   #Freq(MHz)
+    ModeSReply			Float   #Freq(MHz)
+end
+
+Message RfPeakOutputPower 0x0016
+#RfPeakOutputPower
+    ModeA			Float   #dBm					
+    ModeC			Float   #dBm
+    ModeS			Float   #dBm		
+end
+
+Message ReceiverSensitivity 0x0017
+#ReceiverSensitivity
+    ModeAMtl			Float   #dB
+    ModeCMtl			Float   #dB
+    ModeSMtl			Float   #dB
+end
+
+Message Suppression 0x0018
+#Suppression
+    AtcrbsSuppresionOff		Float   #(0-1)
+    AtcrbsSuppresionOn		Float   #(0-1)
+    ModeSSuppresionOff		Float   #(0-1)
+    ModeSSuppresionOn		Float   #(0-1)
+end
+
+Message ModeSDiversityChannelIsolation 0x0019
+#ModeSDiversityChannelIsolation
+    SelectedVsNonSelectedAntennaIsolation	Float   #dB		
+end
+
+Message PulseMeasurements 0x0020
+#PulseMeasurements
+    ModeAWidth			Float   #ms
+    ModeASpacing		Float   #ms
+    ModeADroop			Float   #dB
+    ModeAJitter			Float   #ms
+    ModeAResult			Bool    #ms
+    ModeCWidth			Float   #ms
+    ModeCSpacing		Float   #ms
+    ModeCDroop			Float   #dB
+    ModeCJitter			Float   #ms
+    ModeCResult			Bool    #ms
+    ModeSWidth			Float   #ms
+    ModeSSpacing		Float   #ms
+    ModeSDroop			Float   #dB
+    ModeSJitter			Float   #ms
+    ModeSResult			Bool    #ms
+end
+
+Message ModeSAddress 0x0021
+#ModeSAddress
+    CorrectAddress		String
+    CorrectAddressReplies	Float   #(0-1)		
+    IncorrectAddress#1		String
+    IncorrectAddress#1Replies	Float   #(0-1)
+    IncorrectAddress#2		String
+    IncorrectAddress#2Replies	Float   #(0-1)	
+end
+
+Message CommCapability 0x0022
+#CommCapability
+    CommCap	           	UInt        #0-4
+    Level               	UInt        #1-5   
+    CA                  	UInt        #0-7 Par. 2.2.14.4.6
+    UELM                	UInt        #Table B-3-16 ~13
+    DELM                	UInt        #Table B-3-16 ~14
+    TL                  	UInt        #Table B-13-16 ~4 (Transponder Enhanced indicator)	
+end
+
+Message AtcrbsModeSAllCall 0x0023
+#AtcrbsModeSAllCall
+    AtcrbsResult			Bool   	
+    AtcrbsReplies			Float   #(0-1)		
+    AtcrbsModeSResult			Bool		
+    AtcrbsModeSAddress			String
+    AtcrbsModeSCA			UInt	
+    AtcrbsModeSVerticalStatus		UInt   #Enum
+    AtcrbsModeSComm 			UInt   #0-4
+    AtcrbsModeSReplyFormat		UInt
+    AtcrbsModeSReplies			Float   #(0-1)
+    ModeSResult				Bool	
+    ModeSAddress			String
+    ModeSCA				UInt
+    ModeSVerticalStatus			UInt
+    ModeSComm				UInt
+    ModeSReplyFormat			UInt
+    ModeSModeSReplies			Float   #(0-1)		
+end
+
+Message ModeSSquitter 0x0024
+#ModeSSquitter
+    Df11Address		        String
+    Df11CA			UInt
+    Df11UpadteRate		UInt    #ms
+    Df17Address			String
+    Df17BdsRegisters		Array UInt 
+    Df17UpdateRate		UInt    #ms
+    Frequency			Float   #Freq(MHz)					
+    Power			Float   #dBm			
+end
+
+Message ModeSFormats1of3 0x0025
+    #ModeSFormats1of3
+    Uut				UInt					
+    RespondsToUfFormats		Array UInt
+    UfInterrogation		Array UInt
+    DfReply			Array UInt	
+    Result			Array Bool	
+end
+
+Message ModeSFormats2of3 0x001a
+#ModeSFormats2of3
+    Uut				UInt			
+    RespondsToUfFormats		Array UInt
+    Uf0Df0_Vs			UInt	
+    Uf0Df0_Cc			UInt
+    Uf0Df0_Sl			UInt
+    Uf0Df0_Ri			UInt
+    Uf0Df0_Ac			String
+    Uf0Df0_Ap			String
+    Uf4Df4_Fs			UInt
+    Uf4Df4_Dr			UInt
+    Uf4Df4_Um			UInt
+    Uf4Df4_Ac			String
+    Uf4Df4_Ap			String
+    Uf5Df5_Fs			UInt
+    Uf5Df5_Dr			UInt
+    Uf5Df5_Um			UInt
+    Uf5Df5_Id			String
+    Uf5Df5_Ap			String
+    Uf11Df11_Ca			UInt
+    Uf11Df11_Aa			String
+    Uf11Df11_Pi			UInt
+end
+
+Message ModeSFormats3of3 0x001b
+#ModeSFormats3of3
+    Uut				UInt		
+    RespondsToUfFormats		Array UInt
+    Uf16Df16_Vs			UInt
+    Uf16Df16_Sl			UInt
+    Uf16Df16_Ri			UInt
+    Uf16Df16_Ac			String
+    Uf16Df16_Ap			String
+    Uf16Df16_Mv			String
+    Uf20Df20_Fs			UInt
+    Uf20Df20_Dr			UInt
+    Uf20Df20_Um			String
+    Uf20Df20_Ac			String
+    Uf20Df20_Ap			String
+    Uf20Df20_Mv			String
+    Uf21Df21_Fs			UInt
+    Uf21Df21_Dr			UInt
+    Uf21Df21_Um			String
+    Uf21Df21_Id			String
+    Uf21Df21_Ap			String
+    Uf21Df21_Mv			String
+    Uf24Df24_Ke			UInt
+    Uf24Df24_Nd			UInt
+    Uf24Df24_Md			UInt
+end
+
+Message AtcrbsModeSIdAltitudeMatch 0x001c
+#AtcrbsModeSIdAltitudeMatch
+    ModeAId			UInt			
+    ModeSUf5Df5Id		UInt
+    ModeCAltitude		UInt
+    ModeSUf5Df5Altitude		UInt
+end
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> integration
+
+# Mode 3A Reply
+Message Mode3AReply 0x001d
+# =========This is Mode 3A Info=========
+    Mode3AFineMTL Float                 # dBm (negative)
+    Mode3APercentReply UInt             # percent reply
+    Mode3AReplyPass Bool                # 1 = pass (>= 90%) Basic
+    Mode3ACode UInt                     # 4 digit octal (squawk code)
+    Mode3AIdent Bool                    # 1 = ident only
+    Mode3AXPulse Bool                   # 1 = X pulse on
+    Mode3APercentageMustReply UInt      # percent reply Must Reply
+    Mode3AMustReplyPass Bool            # 1 = pass (>= 99%) Must Reply
+    Mode3ASLSReply UInt                 # percent reply Must NOT Reply
+    Mode3ASLSReplyPass Bool             # 1 = pass (=< 1%) Must NOT Reply
+    Mode3AFreq Float                    # dBm, xxxx.xx
+    Mode3AFreqPass Bool                 # 1 = pass (+/- 1 MHz)
+    Mode3APower Float                   # dBm, xx.x
+    Mode3APowerPass Bool                # 1 = pass (47 to 58 dBm)
+    Mode3ADroop Float                   # dB, +/- x.x positive indicates lower power at end of reply
+    Mode3ADroopPass Bool                # 1 = pass (<= 3 dB)
+    Mode3AReplyDelay Float              # uS, x.xxx
+    Mode3AReplyDelayPass Bool           # 1 = pass (= 3 +/- 0.5 us)
+    Mode3AJitter Float                  # uS, x.xxx
+    Mode3AJitterPass Bool               # 1 = pass (< 0.125 us)
+    Mode3APulseWidth Array Float        # array length is max # of pulses (16)
+    Mode3APulseWidthPass Bool           # 1 = all pulses pass
+    Mode3APulseSpacing Array Float      # array length is max # of spaces (15)
+    Mode3APulseSpacingPass Bool         # 1 = all spacings pass
+end
+
+# Mode C Reply
+Message ModeCReply 0x001e
+# =========This is Mode C Info=========
+    ModeCFineMTL Float                 # dBm (negative)
+    ModeCPercentReply UInt             # percent reply
+    ModeCReplyPass Bool                # 1 = pass (>= 90%) Basic
+    ModeCCode UInt                     # -1000 to 100,000ft
+    ModeCPercentageMustReply UInt      # percent reply Must Reply
+    ModeCMustReplyPass Bool            # 1 = pass (>= 99%) Must Reply
+    ModeCSLSReply UInt                 # percent reply Must NOT Reply
+    ModeCSLSReplyPass Bool             # 1 = pass (=< 1%) Must NOT Reply
+    ModeCFreq Float                    # dBm, xxxx.xx
+    ModeCFreqPass Bool                 # 1 = pass (+/- 1 MHz)
+    ModeCPower Float                   # dBm, xx.x
+    ModeCPowerPass Bool                # 1 = pass (47 to 58 dBm)
+    ModeCDroop Float                   # dB, +/- x.x positive indicates lower power at end of reply
+    ModeCDroopPass Bool                # 1 = pass (<= 3 dB)
+    ModeCReplyDelay Float              # uS, x.xxx
+    ModeCReplyDelayPass Bool           # 1 = pass (= 3 +/- 0.5 us)
+    ModeCJitter Float                  # uS, x.xxx
+    ModeCJitterPass Bool               # 1 = pass (< 0.125 us)
+    ModeCPulseWidth Array Float        # array length is max # of pulses (16)
+    ModeCPulseWidthPass Bool           # 1 = all pulses pass
+    ModeCPulseSpacing Array Float      # array length is max # of spaces (15)
+    ModeCPulseSpacingPass Bool         # 1 = all spacings pass
+end
+>>>>>>> Stashed changes

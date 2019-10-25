@@ -1,0 +1,219 @@
+Version 2
+Destination 0 #TBD
+
+Message ReplyRFVoltageRegulatorTestBuffer 0x1000
+    Channel UInt         #Channel # 0=3, should match requested buffer
+    ADC UInt             #No. of returned elements
+    Voltage Array UInt   #Voltage 8 samples
+    Average Float         #Average Voltage
+    LimitMin Int        #Limit Min used for the test
+    LimitMax Int        #Limit Max used for the test
+    TestResult Int       #Test result
+end
+
+Message ReplyRFSynthesizerTestBuffer 0x1001
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested
+    TestResult Int          #Test result
+    Modulus    UInt         #Modulus value used
+end
+
+Message ReplyRXIQDemOffsetTest 0x1002
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested
+    LimitMin Int            #Limit Min used for the test
+    LimitMax Int            #Limit Max used for the test
+    IResult Array Int       #I Values array
+    QResult Array Int       #Q Values table
+    TestResult Int          #Test result
+end
+
+Message ReplyTXRefTuningOLD 0x1003
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested
+    LimitErr05 Float            #Limit Err05 used for the test
+    LimitErr01 Float            #Limit Err01 used for the test
+    LimitMax Int            #Limit Max used for the test
+    TestResult Int          #Test result
+end
+
+Message ReplyTempSensorTest 0x1004
+    Channel UInt         #Channel # 0=3, should match requested buffer
+    ADC UInt             #No. of returned elements
+    DetVolt Array UInt   #Voltage 8 samples of Det voltage readings
+    AvgDetVolt UInt      #Average Detector Voltage
+    DetTemp Float         #Detector Temp
+    ModVolt Array UInt   #Voltage 8 samples of Mod voltage readings
+    AvgModVolt UInt      #Average Modulatoror Voltage
+    ModTemp Float         #Modulator Temp
+    LimitTempMin Float        #Limit Min used for the test
+    LimitTempMax Float        #Limit Max used for the test
+    LimitTempDiff Float        #Limit Max used for the test
+    Frequency     Float  # Frequency at which this test was run at
+    TestResult Int       #Test result
+end
+
+Message ReplyAssemblyRevTest 0x1005
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    AssmRev    Int          #Modulus value used
+    TestResult Int          #Test result
+end
+
+Message ReplyCalDetTest 0x1006
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    Frequency Array Float   #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested
+    TxPowerMin Int          #Limit Min used for the test
+    TxPowerMax Int          #Limit Max used for the test
+    TXPwr      Array Float  #Power
+    TestResult Int          #Test result
+end
+
+Message ReplyVSWRDetTest 0x1007
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    DetTemp Int             #VSWR Detector Temperature
+    DetFwdPwr Int           #VSWR Detector Fwd Pwr
+    TempMin Int             #Limit Min used for the test
+    TempMax Int             #Limit Max used for the test
+    FwdPwrMin Int           #Limit Min used for the test
+    FwdPwrMax Int           #Limit Max used for the test    
+    TestResult Int          #Test result
+end
+
+Message ReplyDirDetTest 0x1008
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    DirDetRef Int           #Direct Detector Reference
+    envRatio Double         #Envelope Detector ratio
+    RmsNF Int               #Rms Detector Noise Flow
+    EnvSIG Int              #Envelope Detection
+    RmsSIG Int              #RMS Detection
+    DirRefMin Int           #Limit Dir Ref Min used for the test
+    DirRefMax Int           #Limit Dir Ref Max used for the test
+    EnvSensl Int            #Limit EnvSensl used for the test
+    RmsSensl Int            #Limit RmsSensl used for the test    
+    Freq Float              #Freq used for testing
+    TestResult Int          #Test result
+end
+
+Message ReplyThldDetTest 0x1009
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    DirDetThld_L Int        #Direct Threshold Detector Test 1 Ret Value
+    DirDetThld_H Int        #Direct Threshold Detector Test 2 Ret Value
+    DirThldLow   Int        #Limit Det Thld Low
+    DirThldHigh  Int        #Limit Det Thld High
+    Freq         Float      #Freq used in this test
+    TestResult Int          #Test result
+end
+
+Message ReplyTXIQModOffsetTest 0x100a
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested
+    LimitTxOFSMin Int            #Limit TxOFSMin used for the test
+    LimitTxOFSMax Int            #Limit TxOFSMax used for the test
+    LimitTxCRSMin Int    #Limit TxCRSMin used for the test
+    IResult Array Int       #I Values array
+    QResult Array Int       #Q Values array
+    CRSResult Array Double        #CSR array
+    TestResult Int          #Test result
+end
+
+Message ReplyTXIQGainBalTest 0x100b
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested
+    LimitTxBALmin Float            #Limit TxOFSMin used for the test
+    LimitTxBALmax Float            #Limit TxOFSMax used for the test    
+    IBal Array Double       #I Values array
+    QBal Array Double       #Q Values array
+    DeltaPWR Array Float
+    TestResult Int          #Test result
+end
+
+Message ReplyTXRefTuningTest 0x100c
+    Channel UInt            #Channel # 0=3, should match requested buffer
+    ADC UInt                #No. of returned elements
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested  
+    RefAttn Array Float       
+    RefAmpl Array Int       
+    CalDetTemp Array Double
+    MinRefAmpl Int
+    MaxRefAmpl Int
+    TestResult Int
+end
+
+Message ReplyTXStepAttenTest 0x100d
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested  
+    TxStepVal Array Double 
+    MinTxStepVal Array Double
+    MaxTxStepVal Array Double
+    TestResult Int
+end
+
+Message ReplyTXCoarseAttenTest 0x100e
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested  
+    TxCoarseVal Array Double  
+    MinTxCoarseVal Array Double  
+    MaxTxCoarseVal Array Double  
+    TestResult Int
+end
+
+Message ReplyRXAttenTest 0x100f
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested  
+    RXAttnVal Array Double  
+    MinRxAttnVal Array Double  
+    MaxRxAttnVal Array Double  
+    TestResult Int
+end
+
+Message ReplyRXBWTest 0x1010
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested  
+    FreqOfsVals Array Double  
+    LPFloss     Array Double
+    MinRXBW Array Double  
+    MaxRXBW Array Double  
+    TestResult Int
+end
+
+Message ReplyRunBITTest 0x1011
+    Rxlevel Array Int
+    TestResult Int
+end
+
+Message ReplyTXBWTest 0x1012
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested  
+    FreqOfsVals Array Int  
+    LPFloss     Array Double
+    MinTXBW Array Double  
+    MaxTXBW Array Double  
+    TestResult Int
+end
+
+Message ReplyRXIQGainTest 0x1013
+    Frequency Array Float    #Frequencies specified to test for
+    FreqResult Array UInt   #Results for each frequency tested  
+    LimitTxBALmin Float            #Limit TxOFSMin used for the test
+    LimitTxBALmax Float            #Limit TxOFSMax used for the test    
+    IBal Array Double       #I Values array
+    QBal Array Double       #Q Values array
+    TestResult Int
+end

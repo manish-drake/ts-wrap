@@ -1,0 +1,29 @@
+
+10-25 16:53:52:0 [main] Initialize Log
+10-25 16:53:52:0 [router_client] @@@Starting to connect to the server
+10-25 16:53:52:0 [zclient] @@@Trying to make connection
+10-25 16:53:52:0 [router_client] @@@Sending RouterRegisterMessage
+10-25 16:53:52:0 [main] @@@Checking if server started: 19
+10-25 16:53:52:0 [zclient] Sending:{"destination":1,"message":{"address-uri":"tcp://192.168.20.100:8283","dynamic":true,"id":1000,"name":"ts-qt"},"sequence":0,"source":0}
+
+10-25 16:53:52:0 [zclient] Received:{"message":{"id":0,"request":{"address":2130706433,"address-uri":"tcp://192.168.20.100:8283","dynamic":true,"id":1000,"name":"ts-qt"},"status":0},"status-code":0}
+
+10-25 16:53:52:0 [router_client] @@@Received reply for RouterRegisterMessage
+10-25 16:53:52:0 [router_client] @@@Setting address for client
+10-25 16:53:52:0 [router_client] @@@Connected to server and ready!!!
+10-25 16:53:52:0 [router_client] sending: {"destination":12,"message":{"CommandID":2,"Level":3},"sequence":1,"source":2130706433}
+
+10-25 16:53:52:0 [zclient] {"destination":2130706433,"sequence":1,"source":1,"status":"","status-code":0}
+
+10-25 16:53:52:0 [router_client] @@@Starting a listener at local endpoint
+10-25 16:53:52:0 [router_client] received: {"destination":2130706433,"message":null,"sequence":4,"service-status":0,"source":12}
+
+10-25 16:53:52:0 [router_client] @@@Listener started.
+10-25 16:53:52:0 [router_client] sending: {"destination":12,"message":{"CommandID":5},"sequence":2,"source":2130706433}
+
+10-25 16:53:53:0 [zclient] {"destination":2130706433,"sequence":2,"source":1,"status":"","status-code":0}
+
+10-25 16:53:53:0 [router_client] @@@Starting a listener at local endpoint
+10-25 16:53:53:0 [router_client] received: {"destination":2130706433,"message":{"CommandID":4098,"Value":1073889282},"sequence":5,"service-status":0,"source":12}
+
+10-25 16:53:53:0 [router_client] @@@Listener started.

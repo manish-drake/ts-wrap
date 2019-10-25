@@ -1,0 +1,21 @@
+Version 2
+Destination 0  #TBD
+
+#Reply to FpgaPeek
+Message ReplyPeek 0x1000
+    Value UInt
+end
+
+#Reply to RFPeek
+Message ReplyRFPeek 0x1001
+    Value UInt
+end
+
+Message ReplyReadFpgaBuffer 0x1002
+    Buffer Array UInt  
+end
+
+Message ReplySendRegs 0x100c
+    Commands UInt
+    Time     UInt
+end

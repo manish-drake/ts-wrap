@@ -1,0 +1,147 @@
+Version 2
+Destination 0x10
+########SIF ADSB message to TestServer
+
+
+Message ADSBStart 0x0001
+    Port UInt       # SDR-OMNI port that the information will get out
+
+    Endpoint UInt   # If set and non-zero, asyncrhonous ADSB messages will be sent
+                    # to this address, otherwise no messages will be sent
+
+    Address UInt    # If set and non-zero, asyncrhonous ADSB messages will be sent
+                    # to this address, otherwise no messages will be sent
+                    
+    Mode UInt       # 0=RX
+end
+
+Message ADSBStop 0x0002
+end
+
+Message ADSBData 0x0003
+end
+
+Message ADSBTestData 0x0004
+end
+
+#ADSB data (to/from testset
+#TODO: Move to non-UAT specific file
+Message SIFADSBData 0x0005
+    Address UInt
+    AddressType UInt
+
+    Latitude Float
+    Longitude Float
+    Altitude Int
+    AltitudeType UInt
+
+    AltitudeBaro Int
+    AltitudeGNS  Int
+
+    NIC UInt
+    Airborne UInt   #bool, uint for expansion 
+    NorthVel Int
+    EastVel Int
+    Groundspeed UInt
+    HeadingTrack Float
+    AngleType UInt
+    VerticalVelocity Int
+    VerticalVelocitySource UInt
+    AVSize UInt
+    GPSOffsetLateral Int
+    GPSOffsetLongitudinal UInt
+    GPSOffsetSensorApplied UInt #boolean
+    UTCCoupling UInt         #boolean
+    UplinkFeedback UInt
+    EmitterCategory UInt
+    Callsign String
+    FlightID String
+    EmergencyStatus UInt
+    MOPSVersion UInt
+    SIL UInt
+    TXMSO UInt
+    SDA UInt
+    NACp UInt
+    NACv UInt
+    NICBaro UInt
+    UATIn Bool
+    ES1090In Bool
+    TCASOperational Bool
+    
+    OperationalModes UInt
+    TCASResolutionAdvisory Bool
+    IdentActive Bool
+    ATCServices Bool
+    CallsignID UInt
+    SILSupplement UInt
+    GeometricVerticalAccuracy UInt
+    SingleAntenna UInt
+    NICSupp UInt
+
+    SecondaryAltitude Int
+    SelectedAltitude UInt
+    SelectedAltitudeType UInt
+    BaroSetting Float
+    SelectedHeading Float
+    MCPFCUStatus Bool
+    ModeAutoPilotEngaged Bool
+    ModeVNAV Bool
+    ModeAltitudeHold Bool
+    ModeApproach Bool
+    ModeLNAV Bool
+
+end
+
+Message SIFQueryGICB 0x0006
+    BDSRegister     UInt  #BDS Register to interrogate
+                          #Reply may be any of the BDSRegister messages
+                          #MsgIDs 1001-?
+end
+
+#Identify transponder to be tested
+Message IdentifyTransponder 0x0007 IdentifyTransponderReply
+    Port            UInt    #enum (Port A, Port B, Ant)
+    Address         UInt    #All zeros if it is a simple Transponder Indentification test 
+                            #and address of the transponder to query 
+                            #if user manually enters the address
+    Class           UInt    #Stays empty but default, but gets value from UI if user manually
+                            #enters the values in case of manual Address entry 
+end
+
+Message StartPart43Test 0x0008
+    Antenna         UInt    #0=single, 1=top, 2=bottom
+    Distance        UInt    #Feet
+    Port            UInt    #enum (PortA, PortB, Ant)
+    Address         UInt    #Address of the selected UUT
+end
+
+Message FetchPart43TestResults 0x0008
+    TestNo         UInt     #0=summary(SummaryResultsMessage, (DetailedResultsMessages) 1=ModeS L1,2=ModeS L2plus...
+    ReRun          Bool     #True=rerun and refresh test, False=report current data  
+end
+
+Message StopPart43Test 0x0009
+end
+
+Message Interrogate 0x000A
+    Mode    UInt
+    Rate    UInt            #Interogation rate (PRF)
+    Count   UInt            #No. of interrogations in burst
+    Cycles  UInt            #No. of times to repeat burst
+end
+
+Message ADSB1090Start 0x000B
+    Port        UInt
+    Endpoint	UInt
+end
+
+Message ADSB1090FindAll 0x000B
+    Port        UInt
+    Endpoint	UInt
+end
+
+Message SetRXListenInterval 0x000C
+    Enabled     Bool    #Enables or disables the fpga rx_unmute and rx_mute feature
+    StartuS     UInt    #The amount of time after sending an interrogation before we start listening.
+    StopuS      UInt    #The amount of time after sending an interrogation until we stop listening
+end
