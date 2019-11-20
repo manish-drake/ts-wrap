@@ -18,6 +18,3 @@ int main(int argc, char* argv[]) {
     cin.ignore();
     return 0;
 }
-
-
-

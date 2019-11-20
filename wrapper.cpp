@@ -1,125 +1,85 @@
-// WrapperLibrary.cpp : Defines the Wrapper implementation.
-//
-
+// Dll2.cpp : Defines the exported functions for the DLL application.
 #include "stdafx.h"
-#include "Wrapper.h"
+#include "wrapper.h"
+
 #include "ts-logging/logger.h"
 #include <exception>
 #include <thread>
 #include "ts-logging/loggerf.h"
 #include "ts-logging/loggerc.h"
-#include "ts-comms/systemclient.h"
+// #include "ts-comms/systemclient.h"
 
 
 
 
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-// Implementation of the IWrapper interface.
-
-class WrapperImpl : public IWrapper
+__declspec(dllexport) int __stdcall GetSphereSAandVol(double radius, double* sa, double* vol)
+//Calculate the surface area and volume of a sphere with given radius
 {
-    int GetFPGAVer(int n);
-    void Release();
-};
+	if (radius < 0)
+		return false; //return false (0) if radius is negative
+	*sa = GetSA(radius);
+	*vol = GetVol(radius);
+	return true;
+}
 
-int WrapperImpl::GetFPGAVer(int n)
+__declspec(dllexport) double __stdcall GetSA(double radius)
 {
-    try {
+	try {
         Logger::Instance()->Add(new LoggerF);
         Logger::Instance()->Log(Level::Info, "main", "Initialize Log");
 
-        const char *srvEndpoint =   getenv("SRV_ENDPOINT");
-        const char *clnEndpoint =   getenv("CLN_ENDPOINT");
-        int timeout = 20;
+        // const char *srvEndpoint =   getenv("SRV_ENDPOINT");
+        // const char *clnEndpoint =   getenv("CLN_ENDPOINT");
+        // int timeout = 20;
 
-        RouterClient::Instance().Start(clnEndpoint, srvEndpoint);
-        while (timeout-- && !RouterClient::Instance().isConnected())
-        {
-            Logger::Instance()->Log(Level::Info, "main", "@@@Checking if server started: %i", timeout);
-            std::this_thread::sleep_for(std::chrono::milliseconds(200));
-        }
+        // RouterClient::Instance().Start(clnEndpoint, srvEndpoint);
+        // while (timeout-- && !RouterClient::Instance().isConnected())
+        // {
+        //     Logger::Instance()->Log(Level::Info, "main", "@@@Checking if server started: %i", timeout);
+        //     std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        // }
         
-        SystemClient system(RouterClient::Instance());
-        system.SetLevel(3);
-        return (int) system.GetFPGAVersion();
+        // SystemClient system(RouterClient::Instance());
+        // system.SetLevel(3);
+        // return (int) system.GetFPGAVersion();
+        return 6;
 
     }
     catch(std::exception& e) {
         return -100;
     }
-    return n * n;
+    return radius * 5;
 }
 
-void WrapperImpl::Release()
+__declspec(dllexport) double __stdcall GetVol(double radius)
 {
-    delete this;
+	return 4.0 / 3.0 * M_PI * pow(radius, 3.0);
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// Factory function that creates instances if the Wrapper object.
-
-
-#if !defined(_WIN64)
-#pragma comment(linker, "/export:GetWrapper=_GetWrapper@0")
-#endif  // _WIN64
-
-WRAPPERAPI WRAPPERHANDLE APIENTRY GetWrapper()
+__declspec(dllexport) int __stdcall GetFPGAVersion(int var)
 {
-    return new WrapperImpl;
-}
+	try {
+        // Logger::Instance()->Add(new LoggerF);
+        // Logger::Instance()->Log(Level::Info, "main", "Initialize Log");
 
-////////////////////////////////////////////////////////////////////////////////
-// Regular C++ class implementatin.
+        // const char *srvEndpoint =   getenv("SRV_ENDPOINT");
+        // const char *clnEndpoint =   getenv("CLN_ENDPOINT");
+        // int timeout = 20;
 
-int CWrapper::GetFPGAVer(int n)
-{
-    try {
-        Logger::Instance()->Add(new LoggerF);
-        Logger::Instance()->Log(Level::Info, "main", "Initialize Log");
+        // RouterClient::Instance().Start(clnEndpoint, srvEndpoint);
+        // while (timeout-- && !RouterClient::Instance().isConnected())
+        // {
+        //     Logger::Instance()->Log(Level::Info, "main", "@@@Checking if server started: %i", timeout);
+        //     std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        // }
+        
+        // SystemClient system(RouterClient::Instance());
+        // system.SetLevel(3);
+        // return (int) system.GetFPGAVersion();
+        return var + 100;
 
-        const char *srvEndpoint =   getenv("SRV_ENDPOINT");
-        const char *clnEndpoint =   getenv("CLN_ENDPOINT");
-        int timeout = 20;
-        RouterClient::Instance().Start(clnEndpoint, srvEndpoint);
-        while (timeout-- && !RouterClient::Instance().isConnected())
-        {
-            Logger::Instance()->Log(Level::Info, "main", "@@@Checking if server started: %i", timeout);
-            std::this_thread::sleep_for(std::chrono::milliseconds(200));
-        }
-        SystemClient system(RouterClient::Instance());
-        system.SetLevel(3);
-        return (int) system.GetFPGAVersion();
     }
     catch(std::exception& e) {
         return -100;
     }
-    return n * n;
+    return  5;
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// C interface implementation.
-WRAPPERAPI INT APIENTRY WrapperGetFPGAVer(WRAPPERHANDLE handle, INT n)
-{
-    INT nResult = -1;
-
-    if(handle)
-    {
-        nResult = handle->GetFPGAVer(n);
-    }
-
-    return nResult;
-}
-
-WRAPPERAPI VOID APIENTRY WrapperRelease(WRAPPERHANDLE handle)
-{
-    if(handle)
-    {
-        handle->Release();
-    }
-}
-
-////////////////////////////////////////////////////////////////////////////////
