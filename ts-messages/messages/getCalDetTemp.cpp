@@ -1,1 +1,0 @@
-#include "getCalDetTemp.h"

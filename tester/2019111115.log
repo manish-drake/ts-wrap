@@ -1,9 +1,0 @@
-
-11-11 15:8:39:0 [main] Initialize Log
-11-11 15:8:39:0 [router_client] @@@Starting to connect to the server
-11-11 15:8:39:0 [zclient] @@@Trying to make connection
-11-11 15:8:39:0 [router_client] @@@Sending RouterRegisterMessage
-11-11 15:8:39:0 [main] @@@Checking if server started: 19
-11-11 15:8:39:0 [zclient] Sending:{"destination":1,"message":{"address-uri":"tcp://192.168.20.100:8283","dynamic":true,"id":1000,"name":"ts-qt"},"sequence":0,"source":0}
-
-11-11 15:8:40:0 [main] @@@Checking if server started: 18
