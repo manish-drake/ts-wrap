@@ -1,0 +1,7 @@
+Version 2
+Destination 0 #TBD
+
+########UAT message to TestServer
+
+Message DummyMessage 0x0001 #same as UATADSBData
+end

@@ -1,0 +1,61 @@
+Version 2
+Destination 0xd
+
+#Read 16 bit value from FPGA register
+Message FpgaPeek 0x0001 ReplyPeek
+    Address     UInt
+end
+
+#Write  16 bit value to FPGA register
+Message FpgaPoke 0x0002 ReplyRFPeek
+    Address     UInt
+    Value       UInt
+end    
+
+#Read 16 bit value from MAX10 register
+Message RFPeek 0x0003 ReplyReadFpgaBuffer
+    Address     UInt
+end   
+
+#Write  16 bit value to MAX10 register
+Message RFPoke 0x0004 ReplySendRegs
+    Address     UInt
+    Value       UInt
+end   
+
+Message FpgaPower 0x0005
+    On          Bool
+end   
+
+Message ExecuteFunction 0x0006
+    FunctionID  UInt
+end
+
+Message WriteSPI2   0x0007
+    Address UInt    #0 or 1
+    Value   UInt    #16 bits
+end
+
+Message WriteSPI3   0x0008
+    Value   UInt    #16 bites
+end
+
+Message WriteSPI4   0x0009
+    Address UInt    #0=Control lines, 2, CAL_DAC (1=ADC (read, TBD))
+    Value   UInt    #16 bits
+end
+
+Message WriteFpgaBuffer 0x000a
+    Address UInt 
+    Buffer  Array UInt
+    Length  UInt
+end
+
+Message ReadFpgaBuffer 0x000b
+    Address UInt
+    Length  UInt
+end
+
+Message SendRegs 0x000c
+    Commands Array String
+end

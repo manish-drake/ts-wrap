@@ -1,0 +1,40 @@
+Microsoft (R) COFF/PE Dumper Version 14.00.24215.1
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file ts-comms.dll
+
+File Type: DLL
+
+  Image has the following dependencies:
+
+    libzmq-v120-mt-4_0_4.dll
+    libgcc_s_dw2-1.dll
+    KERNEL32.dll
+    msvcrt.dll
+    libwinpthread-1.dll
+    USER32.dll
+    libstdc++-6.dll
+    ts-client.dll
+    json-core.dll
+    ts-logging.dll
+
+  Summary
+
+        1000 .CRT
+        1000 .bss
+        1000 .data
+        9000 .debug_abbrev
+        4000 .debug_aranges
+        1000 .debug_frame
+      2C8000 .debug_info
+       10000 .debug_line
+        4000 .debug_ranges
+        C000 .debug_str
+       10000 .edata
+       14000 .eh_frame
+        2000 .idata
+        5000 .rdata
+        2000 .reloc
+       20000 .text
+        1000 .tls
