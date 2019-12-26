@@ -9,6 +9,7 @@ TARGET = ts-comms
 TEMPLATE = lib
 
 DEFINES += TSCOMMS_LIBRARY
+DEFINES += ZMQ_STATIC
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -44,14 +45,13 @@ HEADERS += \
     part43client.h \
     navclient.h
 
+win32: LIBS += -L$$PWD/../../libzmq64/ -llibzmq-v141-mt-4_3_2
 
-win32: {
-    LIBS += -Lc:/libzmq/4_0_4/lib -llibzmq-v120-mt-4_0_4
+INCLUDEPATH += $$PWD/../../libzmq64/include
+DEPENDPATH += $$PWD/../../libzmq64/include
 
-    INCLUDEPATH += c:/libzmq/4_0_4/include
-    DEPENDPATH += c:/libzmq/4_0_4/include
-}
-
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/../../libzmq64/libzmq-v141-mt-4_3_2.lib
+#else:win32-g++: PRE_TARGETDEPS += $$PWD/../../libzmq64/liblibzmq-v141-mt-4_3_2.a
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../ts-client/release/ -lts-client
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../ts-client/debug/ -lts-client

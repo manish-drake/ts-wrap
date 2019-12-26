@@ -10,7 +10,7 @@
 #include "systemclient.h"
 
 
-__declspec(dllexport) int __stdcall GetFPGAVersion(int var)
+__declspec(dllexport) unsigned int __stdcall GetFPGAVersion(int var)
 {
     Logger::Instance()->Add(new LoggerF);
 
@@ -24,7 +24,7 @@ __declspec(dllexport) int __stdcall GetFPGAVersion(int var)
     reader.parse(ss.str(), val, false);
     int timeout = 20;
     unsigned int version =0;
-    RouterClient::Instance().Start("tcp://192.168.20.100:8283", "tcp://192.168.20.35:6000");
+    RouterClient::Instance().Start("tcp://192.168.20.181:8283"/*client*/, "tcp://192.168.20.43:6000"/*server*/);
     while (timeout-- && !RouterClient::Instance().isConnected())
     {
         Logger::Instance()->Log(Level::Info, "main", "@@@Checking if server started: %i", timeout);
@@ -37,7 +37,7 @@ __declspec(dllexport) int __stdcall GetFPGAVersion(int var)
 
 
     Logger::Instance()->Log(Level::Info, "main", "@@@the square is: %i", 8);
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+//    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     RouterClient::Instance().Close();
     return version;
 }

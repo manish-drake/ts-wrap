@@ -9,6 +9,7 @@ TARGET = ts-client
 TEMPLATE = lib
 
 DEFINES += TSCLIENT_LIBRARY
+DEFINES += ZMQ_STATIC
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -48,14 +49,21 @@ HEADERS += \
     RouterRegisterReply.h
 
 
-win32 {
-    LIBS += -Lc:/libzmq/4_0_4/lib -llibzmq-v120-mt-4_0_4
+win32: LIBS += -L$$PWD/../../libzmq64/ -llibzmq-v141-mt-4_3_2
 
-    INCLUDEPATH += c:/libzmq/4_0_4/include
-    DEPENDPATH += c:/libzmq/4_0_4/include
-}
+INCLUDEPATH += $$PWD/../../libzmq64/include
+DEPENDPATH += $$PWD/../../libzmq64/include
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/../../libzmq64/libzmq-v141-mt-4_3_2.lib
+#else:win32-g++: PRE_TARGETDEPS += $$PWD/../../libzmq64/liblibzmq-v141-mt-4_3_2.a
 
 
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../ts-logging/debug -lts-logging
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../ts-logging/debug -lts-logging
+else:unix: LIBS += -L$$OUT_PWD/../ts-logging/debug -lts-logging
+
+INCLUDEPATH += $$PWD/../ts-logging
+DEPENDPATH += $$PWD/../ts-logging
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../ts-logging/debug -lts-logging
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../ts-logging/debug -lts-logging
 else:unix: LIBS += -L$$OUT_PWD/../ts-logging/debug -lts-logging

@@ -1,11 +1,11 @@
-extern "C" __declspec(dllexport) int __stdcall GetFPGAVersion(int var);
+extern "C" __declspec(dllexport) unsigned int __stdcall GetFPGAVersion(int var);
 
 
 
 class cdllexp{
     public:
     cdllexp() = default;
-    inline int GetFPGA_Version(int var)
+    inline unsigned int GetFPGA_Version(int var)
     {
         return GetFPGAVersion(var);
     }
