@@ -18,10 +18,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     DllMain.cpp \
+    client.cpp \
     stdafx.cpp \
     dllexp.cpp
 
 HEADERS += \
+    client.h \
     stdafx.h \
     dllexp.h
 
