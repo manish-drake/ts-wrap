@@ -18,7 +18,15 @@ BOOL APIENTRY DllMain( HMODULE /*hModule*/,
 	{
 	case DLL_PROCESS_ATTACH:
 	case DLL_THREAD_ATTACH:
+    {
+        //create context here
+        break;
+    }
 	case DLL_THREAD_DETACH:
+    {
+        //destroy context here
+        break;
+    }
 	case DLL_PROCESS_DETACH:
 		break;
 	}
